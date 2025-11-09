@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    /* Output configuration */
+    "target": "ES2019",
+    "module": "ESNext",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "dist/types",
+
+    /* Module resolution & interop */
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+
+    /* Performance & stability */
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* TypeScript + Rollup compatibility */
+    "importHelpers": true,      // ✅ Uses tslib helpers (reduces output size)
+    "isolatedModules": true,    // ✅ Prevents cross-file type issues in bundlers
+
+    /* Strictness */
+    "strict": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
