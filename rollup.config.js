@@ -1,36 +1,21 @@
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import json from '@rollup/plugin-json';
-import typescript from '@rollup/plugin-typescript';
-import terser from '@rollup/plugin-terser'
-import nodePolyfills from 'rollup-plugin-node-polyfills';
+import typescript from "@rollup/plugin-typescript";
+import commonjs from "@rollup/plugin-commonjs";
+import nodeResolve from "@rollup/plugin-node-resolve";
+import json from "@rollup/plugin-json";
+import terser from "@rollup/plugin-terser";
 
 export default {
-  input: 'src/index.ts',
+  input: "src/index.ts",
   output: [
-    {
-      file: 'dist/index.esm.js',
-      format: 'esm',
-      sourcemap: true,
-    },
-    {
-      file: 'dist/index.cjs.js',
-      format: 'cjs',
-      sourcemap: true,
-    },
-    {
-      file: 'dist/index.umd.js',
-      format: 'umd',
-      name: 'VinayakApiHelper',
-      sourcemap: true,
-      plugins: [terser()],
-    },
+    { file: "dist/index.esm.js", format: "esm" },
+    { file: "dist/index.cjs.js", format: "cjs" }
   ],
   plugins: [
-    resolve({ browser: true, preferBuiltins: false }),
+    nodeResolve(),
     commonjs(),
     json(),
-    nodePolyfills(),
-    typescript({ tsconfig: './tsconfig.json' }),
+    typescript({ tsconfig: "./tsconfig.json" }),
+    terser()
   ],
+  external: ["axios"]
 };

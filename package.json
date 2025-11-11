@@ -1,39 +1,39 @@
 {
   "name": "vinayak-api-helper",
-  "version": "1.0.0",
-  "description": "Simple API helper exposing createPost and attaching to window",
+  "version": "1.0.1",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-  "browser": "dist/index.umd.js",
   "types": "dist/index.d.ts",
-  "scripts": {
-    "clean": "rm -rf dist",
-    "build": "rollup -c",
-    "prepublishOnly": "npm run build"
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    }
   },
-  "keywords": [
-    "api",
-    "helper",
-    "fetch",
-    "createPost",
-    "typescript",
-    "rollup"
+  "files": [
+    "dist"
   ],
-  "author": "Vinayak",
-  "license": "MIT",
-  "devDependencies": {
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^25.0.8",
-    "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-typescript": "^11.1.6",
-    "rollup": "^3.29.5",
-    "rollup-plugin-node-polyfills": "^0.2.1",
-    "typescript": "^5.6.3"
+  "scripts": {
+    "build": "rollup -c"
   },
   "dependencies": {
-    "axios": "^1.7.7",
-    "tslib": "^2.8.1"
+    "axios": "^1.7.3",
+    "js-cookie": "^3.0.5",
+    "next-auth": "^4.24.13",
+    "nookies": "^2.5.2",
+    "vinayak-api-helper": "file:vinayak-api-helper-1.0.1.tgz"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/js-cookie": "^3.0.6",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.2",
+    "rollup": "^3.29.5",
+    "typescript": "^5.9.3"
   }
 }

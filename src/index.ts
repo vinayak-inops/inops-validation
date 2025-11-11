@@ -1,32 +1,31 @@
-import axios from "axios";
+import { OrganizationApi } from "./apis/core/organization";
+import axiosService from "./config/axiosConfig";
 
-export interface PostData {
-  title: string;
-  body: string;
-  userId: number;
-  [key: string]: any;
+/**
+ * API Helper class to wrap organization API and token management
+ */
+export class ApiHelper {
+  public organization = new OrganizationApi();
+
+  constructor() {
+    // Attach to window if running in browser
+    if (typeof window !== "undefined") {
+      (window as any).apiHelper = this;
+    }
+  }
+
+  /**
+   * Set authentication token
+   * @param token Auth token string
+   */
+  public setAuthToken(token: string) {
+    axiosService.storeAuthToken(token);
+  }
 }
 
-export interface ApiResponse {
-  status: number;
-  data: any;
-  method: string;
-}
-
-const apiHelper = {
-  async createPost(postData: PostData): Promise<ApiResponse> {
-    const response = await axios.post("https://jsonplaceholder.typicode.com/posts", postData);
-    return {
-      status: response.status,
-      data: response.data,
-      method: "createPost",
-    };
-  },
-};
-
-// Make available globally in browser
-if (typeof window !== "undefined") {
-  (window as any).apiHelper = apiHelper;
-}
-
+// Export a single instance for convenience
+const apiHelper = new ApiHelper();
 export default apiHelper;
+
+// Re-export types
+export * from "./types/apiTypes";
